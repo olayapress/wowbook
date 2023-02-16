@@ -51,6 +51,7 @@
         <li><a id='flipsound' href="#" title='flip sound on/off' >Flip sound</a></li>
         <li><a id='fullscreen' href="#" title='fullscreen on/off' >Fullscreen</a></li>
         <li><a id='thumbs'    href="#" title='thumbnails on/off' >Thumbs</a></li>
+        <li><input id='gotopage' type="number" min="1" max="112" href="#" title='go to page #'/></li>
     </ul>
 </nav>
 <div id="main">
@@ -336,6 +337,17 @@
         });
 
         var book = $.wowBook("#features");
+        
+        $("#gotopage").keypress(function(event) {
+            if(event.which==13) {
+                book.showPage(event.target.value-1)
+                event.target.value = Math.min(Math.max(event.target.value,1),112)
+            }
+        })
+
+        function goToPage(pgNb) {
+            book.goToPage(pgNb)
+        }
 
         function rebuildThumbnails(){
             book.destroyThumbnails()
