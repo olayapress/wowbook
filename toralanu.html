@@ -271,7 +271,6 @@
                 alert(msg);
             }
         }).css({'display':'none', 'margin':'auto'}).fadeIn(1000);
-
         $("#cover").click(function(){
             $.wowBook("#features").advance();
         });
@@ -280,14 +279,11 @@
         
         $("#gotopage").keypress(function(event) {
             if(event.which==13) {
+                console.log(event.target.value)
                 book.showPage(event.target.value-1)
                 event.target.value = Math.min(Math.max(event.target.value,1),82)
             }
         })
-
-        function goToPage(pgNb) {
-            book.goToPage(pgNb)
-        }
 
         function rebuildThumbnails(){
             book.destroyThumbnails()
